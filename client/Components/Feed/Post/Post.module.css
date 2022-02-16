@@ -1,0 +1,32 @@
+.post {
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.heading {
+  text-align: left;
+  margin-top: -5px;
+  font-size: 35px;
+}
+
+.body {
+  display: flex;
+}
+
+.photo {
+  width: 350px;
+  height: 210px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 25px;
+  flex-direction: column;
+  padding: 10px 0px 5px 0px;
+}

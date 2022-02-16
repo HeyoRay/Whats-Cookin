@@ -1,0 +1,49 @@
+{
+  "name": "soloproject",
+  "version": "1.0.0",
+  "description": "Solo Project",
+  "main": "index.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack serve --open --hot & nodemon server/server.js",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeyoRay/soloproject.git"
+  },
+  "author": "Raymond Huang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeyoRay/soloproject/issues"
+  },
+  "homepage": "https://github.com/HeyoRay/soloproject#readme",
+  "dependencies": {
+    "@babel/core": "^7.17.3",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "cookie-parser": "^1.4.6",
+    "eslint-config-airbnb": "^19.0.4",
+    "express": "^4.17.2",
+    "pg": "^8.7.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "style-loader": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.6.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.69.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}

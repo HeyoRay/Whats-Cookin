@@ -1,0 +1,10 @@
+.thumbsUp {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.thumbsDown {
+  margin-left: 15px;
+  cursor: pointer;
+  transition: color 200ms;
+}
