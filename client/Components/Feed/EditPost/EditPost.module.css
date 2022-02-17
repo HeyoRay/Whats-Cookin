@@ -1,0 +1,73 @@
+.post {
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.heading {
+  display: flex;
+  text-align: left;
+  font-size: 35px;
+}
+
+.body {
+  display: flex;
+}
+
+.photo {
+  width: 350px;
+  height: 210px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.imgInput {
+  margin-top: 90px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: 25px;
+  flex-direction: column;
+  padding: 10px 0px 5px 0px;
+}
+
+.trash:hover {
+  cursor: pointer;
+  animation: hueRotation 2s linear infinite;
+}
+
+@keyframes hueRotation {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+button:focus {
+  outline: none;
+}
+
+.editBtn {
+  display: flex;
+}
+
+.editBtn:hover {
+  cursor: pointer;
+  animation: hueRotation 2s linear infinite;
+}
+
+.title {
+  margin-top: -50px;
+}
+
+.comment {
+  margin-top: 20px;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  border-color: whitesmoke;
+  border-radius: 10px;
+}

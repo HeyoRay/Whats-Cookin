@@ -42,12 +42,12 @@ const CreatePost = (props) => {
     setName(e.target.value);
   };
 
-  const rateChangeHandler = (e) => {
-    setRating(e.target.value);
+  const rateChangeHandler = (stars) => {
+    setRating(stars);
   };
 
-  const thumbChangeHandler = (e) => {
-    setThumb(e.target.value);
+  const thumbChangeHandler = (thumb) => {
+    setThumb(thumb);
   };
 
   const urlRChangeHandler = (e) => {
@@ -70,6 +70,7 @@ const CreatePost = (props) => {
 
   return (
     <Modal onHideCart={props.onHideCart}>
+
       <section>
         <article className={classes.post}>
           <h3 className={classes.title}>Enter your Recipe details</h3>
@@ -82,20 +83,22 @@ const CreatePost = (props) => {
               <input className= {classes.imgInput} name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
             </div>
             <div className={classes.info}>
-              <div className="createCharFields">
-                <input name="rating" placeholder="Rating!" value={rating} onChange={rateChangeHandler} />
+              <div >
+                <StarRating clickRate={rateChangeHandler}/>
               </div>
-              <div className="createCharFields">
-                <input name="thumb" placeholder="Thumb!" value={thumb} onChange={thumbChangeHandler} />
+              <div >
+                <Recommend clickThumb={thumbChangeHandler}/>
               </div>
-              <div className="createCharFields">
+              <div >
                 <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
               </div>
             </div>
           </div>
-          <div className="createCharFields">
+
+          <div>
             <input className={classes.comment} name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
           </div>
+          
         </article>
         <button type="button" className="btnMain" onClick={() => {submitHandler(); props.onHideCart(); refresh();}}>Save</button>
       </section>

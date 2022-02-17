@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Modal from '../../UI/Modal.js/Modal';
+import classes from './EditPost.module.css';
+import StarRating from '../Post/Rating';
+import Recommend from '../Post/Recommend';
 
 const EditPost = (props) => {
   const [name, setName] = useState(props.name);
@@ -40,13 +43,14 @@ const EditPost = (props) => {
     setName(e.target.value);
   };
 
-  const rateChangeHandler = (e) => {
-    setRating(e.target.value);
+  const rateChangeHandler = (stars) => {
+    setRating(stars);
   };
 
-  const thumbChangeHandler = (e) => {
-    setThumb(e.target.value);
+  const thumbChangeHandler = (thumb) => {
+    setThumb(thumb);
   };
+
 
   const urlRChangeHandler = (e) => {
     setRecipeUrl(e.target.value);
@@ -68,32 +72,33 @@ const EditPost = (props) => {
 
   return (
     <Modal onHideCart={props.onHideEdit}>
+
       <section>
-        <article className="card createChar">
-          <h3>Edit your Recipe details</h3>
-          <div className="createCharFields">
-            <label htmlFor="name">Name: </label>
+        <article className={classes.post}>
+          <h3 className={classes.title}>Enter your Recipe details</h3>
+          <div className={classes.heading}>
             <input name="name" placeholder="Name Of Recipe" value={name} onChange={nameChangeHandler} />
           </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Rating: </label>
-            <input name="rating" placeholder="Rating!" value={rating} onChange={rateChangeHandler} />
+
+          <div className={classes.body}>
+            <div className={classes.photo}>
+              <input className={classes.imgInput} name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
+            </div>
+            <div className={classes.info}>
+              <div >
+                <StarRating clickRate={rateChangeHandler} numRating={rating}/>
+              </div>
+              <div >
+                <Recommend clickThumb={thumbChangeHandler} reccThumb={thumb}/>
+              </div>
+              <div >
+                <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
+              </div>
+            </div>
           </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Thumb: </label>
-            <input name="thumb" placeholder="Thumb!" value={thumb} onChange={thumbChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Image Url: </label>
-            <input name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Recipe Url: </label>
-            <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Comments: </label>
-            <input name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
+
+          <div>
+            <input className={classes.comment} name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
           </div>
         </article>
         <button type="button" className="btnMain" onClick={() => { submitHandler(); props.onHideEdit(); refresh(); }}>Save</button>
