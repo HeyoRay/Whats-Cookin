@@ -6,6 +6,8 @@
 }
 
 .heading {
+  display: flex;
+  justify-content: space-between;
   text-align: left;
   margin-top: -5px;
   font-size: 35px;
@@ -29,4 +31,19 @@
   margin-left: 25px;
   flex-direction: column;
   padding: 10px 0px 5px 0px;
+}
+
+.trash:hover {
+  cursor: pointer;
+  animation: hueRotation 2s linear infinite;
+}
+
+@keyframes hueRotation {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+button:focus {
+  outline: none;
 }

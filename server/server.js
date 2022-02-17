@@ -16,8 +16,9 @@ app.use(cookieParser());
 // Routes
 app.get('/api', whatsCookinController.getPosts, (req, res) => res.status(200).json(res.locals.posts));
 
-app.get('/api', whatsCookinController.createPosts, whatsCookinController.getPosts, (req, res) => res.status(200).json(res.locals.posts));
+app.post('/api', whatsCookinController.createPost, (req, res) => res.status(200));
 
+app.delete('/api', whatsCookinController.deletePost, (req, res) => res.status(200));
 // 404 handler
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
@@ -35,6 +36,6 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(PORT, () => { console.log(`Listening on port ${PORT}...`); });
+app.listen(PORT, () => { console.log(`Listening on port ${PORT}...🚀`); });
 
 module.exports = app;

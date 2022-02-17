@@ -20,15 +20,29 @@ whatsCookinController.getPosts = (req, res, next) => {
 };
 
 whatsCookinController.createPost = (req, res, next) => {
-  console.log(req.body);
-  const { name, gender, species_id, birth_year, eye_color } = req.body;
+  const { name, rating, thumb, comments, imageUrl, recipeUrl } = req.body;
   const createPost = `
-    INSERT INTO post (name, rating, thumb, notes, imageUrl, linkUrl)
-    VALUES ($1,$2,$3,$4,$5, $6)
+    INSERT INTO post (name, rating, thumb, notes, imageurl, linkurl)
+    VALUES ($1,$2,$3,$4,$5,$6)
   `;
-  db.query(createPost, [name, gender, species_id, birth_year, eye_color])
+  db.query(createPost, [name, rating, thumb, comments, imageUrl, recipeUrl])
     .then((data) => {
-      console.log(data, 'done');
+      next();
+    })
+    .catch((err) => next({
+      log: `whatsCookinController.createPost ERROR: ${err}`,
+      message: { err: `whatsCookinController.createPost ERROR: ${err}` }
+    }));
+};
+
+whatsCookinController.deletePost = (req, res, next) => {
+  const {id} = req.body;
+  const deletePost = `
+  DELETE FROM post
+  WHERE _id = $1;
+  `;
+  db.query(deletePost, [id])
+    .then((data) => {
       next();
     })
     .catch((err) => next({

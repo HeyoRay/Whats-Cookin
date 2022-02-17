@@ -29,14 +29,14 @@ CREATE TABLE  public.post (
 	"rating" bigint NOT NULL,
 	"thumb" varchar NOT NULL,
 	"notes" varchar NOT NULL,
-	"imageUrl" varchar NOT NULL,
-	"linkUrl" varchar NOT NULL,
-	CONSTRAINT "people_in_films_pk" PRIMARY KEY ("_id")
+	"imageurl" varchar NOT NULL,
+	"linkurl" varchar NOT NULL,
+	CONSTRAINT "post_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
 );
 
-INSERT INTO public.post VALUES (1, 'Bacon Tomato Soup', 4, 'n', 'Awesome', 'https://www.simplyrecipes.com/thmb/uioMJ2BUO0mThSdC6VVWvMNXY3Q=/2000x1125/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2009__08__tomato-white-bean-bacon-soup-horiz-a-2000-ba364e751c664086a08d68f7e3077ce5.jpg', 'https://www.w3schools.com/cssref/css_colors.asp')
+-- INSERT INTO public.post VALUES (1, 'Bacon Tomato Soup', 4, 'n', 'Awesome', 'https://www.simplyrecipes.com/thmb/uioMJ2BUO0mThSdC6VVWvMNXY3Q=/2000x1125/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2009__08__tomato-white-bean-bacon-soup-horiz-a-2000-ba364e751c664086a08d68f7e3077ce5.jpg', 'https://www.w3schools.com/cssref/css_colors.asp')
 
 -- CREATE TABLE  public.films (
 -- 	"_id" serial NOT NULL,

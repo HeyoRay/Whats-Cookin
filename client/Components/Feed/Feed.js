@@ -1,46 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Post from './Post/Post';
-import { useState, useEffect } from 'react';
+import CreatePost from '../CreatePost/CreatePost';
 
-//these would come in as props from Feed.js after fetching from DB
-const name = 'Bacon Tomato Soup';
-const rating = 4;
-const thumb = 'n';
-const comments = 'JUST SOME NOTES THAT WOULD GO HERE TO TALK ABOUT HOW GREAT THIS RECIPE IS!';
-const imageUrl = 'https://www.simplyrecipes.com/thmb/uioMJ2BUO0mThSdC6VVWvMNXY3Q=/2000x1125/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2009__08__tomato-white-bean-bacon-soup-horiz-a-2000-ba364e751c664086a08d68f7e3077ce5.jpg';
-const recipeUrl = 'https://www.w3schools.com/cssref/css_colors.asp';
-//
 
 const Feed = () => {
 
   const [gotPosts, setGotPosts] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
+  const [cartShown, setCartShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartShown(false);
+  };
+
 
   const posts = [];
+
   useEffect(() => {
+    setGotPosts(false);
     fetch('/api')
       .then((res) => res.json())
       .then((post) => {
         post.forEach((el, i) => {
           posts.push(<Post
             key={i}
+            id={el._id}
             name={el.name}
-            imageUrl={el.imageUrl}
+            imageUrl={el.imageurl}
             rating={el.rating}
             thumb={el.thumb}
-            recipeUrl={el.linkUrl}
+            recipeUrl={el.linkurl}
             comments={el.notes}
+            trash={deletingPost}
           />);
         });
         setAllPosts(posts);
         setGotPosts(true);
       })
       .catch(err => console.log('Feed useEffect: get post: ERROR: ', err));
-  }, []);
+  }, [cartShown]);
+
+
+  const deletingPost = (id) => {
+    fetch('/api', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'Application/JSON'
+      },
+      body: JSON.stringify({id: id})
+    })
+      .then(window.location.reload(1))
+      .catch(err => console.log('Delete fetch /api/: ERROR: ', err));
+  };
+
+
 
   return (
     <div>
-      <h1> header </h1>
+      <button onClick={showCartHandler}>CREATE HERE!</button>
+      {cartShown && <CreatePost onHideCart={hideCartHandler} />}
       {gotPosts ? allPosts : <h1>Loading data, please wait...</h1>}
     </div>
   );

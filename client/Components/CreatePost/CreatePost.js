@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Modal from '../UI/Modal.js/Modal';
 
-const CreatePost = () => {
+const CreatePost = (props) => {
   const [name, setName] = useState('');
   const [rating, setRating] = useState('');
   const [thumb, setThumb] = useState('');
@@ -34,38 +35,69 @@ const CreatePost = () => {
       .catch(err => console.log('CreateCharacter fetch /api/character: ERROR: ', err));
   };
 
+  const nameChangeHandler = (e) => {
+    setName(e.target.value);
+  };
+
+  const rateChangeHandler = (e) => {
+    setRating(e.target.value);
+  };
+
+  const thumbChangeHandler = (e) => {
+    setThumb(e.target.value);
+  };
+
+  const urlRChangeHandler = (e) => {
+    setRecipeUrl(e.target.value);
+  };
+
+  const urlPChangeHandler = (e) => {
+    setImageUrl(e.target.value);
+  };
+
+  const commentChangeHandler = (e) => {
+    setComments(e.target.value);
+  };
+
+  // const refresh = () => {
+  //   setTimeout(function () {
+  //     window.location.reload(1);
+  //   }, 500);
+  // };
+
   return (
-    <div>
-      <form onSubmit={submitHandler}>
+    <Modal onHideCart={props.onHideCart}>
+      <section>
         <article className="card createChar">
           <h3>Enter your Recipe details</h3>
           <div className="createCharFields">
             <label htmlFor="name">Name: </label>
-            <input name="name" placeholder="Name Of Recipe" value={name} onChange={setName} />
+            <input name="name" placeholder="Name Of Recipe" value={name} onChange={nameChangeHandler} />
           </div>
           <div className="createCharFields">
             <label htmlFor="name">Rating: </label>
-            <input name="rating" placeholder="Rating!" value={rating} onChange={setRating} />
+            <input name="rating" placeholder="Rating!" value={rating} onChange={rateChangeHandler} />
           </div>
           <div className="createCharFields">
             <label htmlFor="name">Thumb: </label>
-            <input name="thumb" placeholder="Thumb!" value={thumb} onChange={setThumb} />
+            <input name="thumb" placeholder="Thumb!" value={thumb} onChange={thumbChangeHandler} />
           </div>
           <div className="createCharFields">
             <label htmlFor="name">Image Url: </label>
-            <input name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={setImageUrl} />
+            <input name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
           </div>
           <div className="createCharFields">
             <label htmlFor="name">Recipe Url: </label>
-            <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={setRecipeUrl} />
+            <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
           </div>
           <div className="createCharFields">
             <label htmlFor="name">Comments: </label>
-            <input name="comments" placeholder="Add Comments!!" value={comments} onChange={setComments} />
+            <input name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
           </div>
         </article>
-      </form>
-    </div>
+        <button type="button" className="btnMain" onClick={() => {submitHandler(); props.onHideCart(); }}>Save</button>
+      </section>
+    </Modal>
   );
 };
 
