@@ -51,4 +51,21 @@ whatsCookinController.deletePost = (req, res, next) => {
     }));
 };
 
+
+whatsCookinController.editPost = (req, res, next) => {
+  const { id, name, rating, thumb, comments, imageUrl, recipeUrl } = req.body;
+  const editPost = `
+    UPDATE post 
+    SET name = $2, rating = $3, thumb= $4, notes= $5, imageurl= $6, linkurl= $7
+    WHERE _id = $1;
+  `;
+  db.query(editPost, [id, name, rating, thumb, comments, imageUrl, recipeUrl])
+    .then((data) => {
+      next();
+    })
+    .catch((err) => next({
+      log: `whatsCookinController.createPost ERROR: ${err}`,
+      message: { err: `whatsCookinController.createPost ERROR: ${err}` }
+    }));
+};
 module.exports = whatsCookinController;

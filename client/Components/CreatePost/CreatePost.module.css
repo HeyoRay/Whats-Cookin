@@ -7,9 +7,7 @@
 
 .heading {
   display: flex;
-  justify-content: space-between;
   text-align: left;
-  margin-top: -5px;
   font-size: 35px;
 }
 
@@ -22,6 +20,10 @@
   height: 210px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.imgInput {
+  margin-top: 90px;
 }
 
 .info {
@@ -55,4 +57,17 @@ button:focus {
 .editBtn:hover {
   cursor: pointer;
   animation: hueRotation 2s linear infinite;
+}
+
+.title {
+  margin-top: -50px;
+}
+
+.comment {
+  margin-top: 20px;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  border-color: whitesmoke;
+  border-radius: 10px;
 }

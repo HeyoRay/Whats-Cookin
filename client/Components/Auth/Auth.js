@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import classes from './Auth.module.css';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/whatscooking.png';
 
 
 const Auth = () => {
@@ -54,43 +55,48 @@ const Auth = () => {
     // props.onLogin(enteredEmail, enteredPassword);
   };
   return (
-    <main className={classes.auth}>
-      <h1>Whats Cookin!</h1>
-      <section>
-        <form>
-          <div
-            className={`${classes.control} ${emailIsValid === false ? classes.invalid : ''
-            }`}
-          >
-            <label htmlFor='email'>Email</label>
-            <input
-              type="email"
-              id="email"
-              value={enteredEmail}
-              onChange={emailChangeHandler}
-              onBlur={validateEmailHandler}
-            />
-          </div>
-          <div
-            className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
-            }`}
-          >
-            <label htmlFor='password'>Password</label>
-            <input
-              type="password"
-              id="password"
-              value={enteredPassword}
-              onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
-            />
-          </div>
-          <Link to={'/feed'}>
-            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-              Login</Button>
-          </Link>
-        </form>
-      </section>
-    </main>
+    <div>
+      <div className={classes.header}>
+        <img className={classes.logo} src={logo} height={300} />
+        {/* <h2 className={classes.title}>Food Tastes Best Shared!</h2> */}
+      </div>
+      <main className={classes.auth}>
+        <section>
+          <form>
+            <div
+              className={`${classes.control} ${emailIsValid === false ? classes.invalid : ''
+              }`}
+            >
+              <label htmlFor='email'>Email</label>
+              <input
+                type="email"
+                id="email"
+                value={enteredEmail}
+                onChange={emailChangeHandler}
+                onBlur={validateEmailHandler}
+              />
+            </div>
+            <div
+              className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
+              }`}
+            >
+              <label htmlFor='password'>Password</label>
+              <input
+                type="password"
+                id="password"
+                value={enteredPassword}
+                onChange={passwordChangeHandler}
+                onBlur={validatePasswordHandler}
+              />
+            </div>
+            <Link to={'/feed'}>
+              <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+                Login</Button>
+            </Link>
+          </form>
+        </section>
+      </main>
+    </div>
   );
 };
 

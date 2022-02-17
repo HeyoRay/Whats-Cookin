@@ -16,9 +16,13 @@ app.use(cookieParser());
 // Routes
 app.get('/api', whatsCookinController.getPosts, (req, res) => res.status(200).json(res.locals.posts));
 
-app.post('/api', whatsCookinController.createPost, (req, res) => res.status(200));
+app.post('/api', whatsCookinController.createPost, (req, res) => res.status(200).json('YOU MADE A POST!'));
 
-app.delete('/api', whatsCookinController.deletePost, (req, res) => res.status(200));
+app.delete('/api', whatsCookinController.deletePost, (req, res) => res.status(200).json('BUT FOR WHY?!'));
+
+app.put('/api', whatsCookinController.editPost, (req, res) => res.status(200).json('JUST A MINOR INCONVENIENCE!'));
+
+
 // 404 handler
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');

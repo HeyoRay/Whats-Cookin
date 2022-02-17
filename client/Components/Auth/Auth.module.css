@@ -1,7 +1,7 @@
 .auth {
   margin: 5rem auto;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
-  width: 35rem;
+  width: 30rem;
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
@@ -29,7 +29,7 @@
 }
 
 .control input {
-  flex: 3;
+  flex: 4;
   font: inherit;
   padding: 0.35rem 0.35rem;
   border-radius: 6px;
@@ -57,4 +57,23 @@
     flex-direction: row;
   }
 
+}
+
+/* .header {
+  display: flex;
+} */
+
+.logo {
+  /* display: flex; */
+  margin-bottom: -100px;
+  transform: rotate(15deg);
+  /* align-self: center; */
+  /* flex-grow: 1; */
+}
+
+.title {
+  display: flex;
+  align-self: center;
+  margin-left: 5%;
+  flex-grow: 1;
 }

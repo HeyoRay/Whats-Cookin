@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Modal from '../UI/Modal.js/Modal';
+import classes from './CreatePost.module.css';
+import StarRating from '../Feed/Post/Rating';
+import Recommend from '../Feed/Post/Recommend';
 
 const CreatePost = (props) => {
   const [name, setName] = useState('');
@@ -32,7 +35,7 @@ const CreatePost = (props) => {
         console.log(data);
         //push new State to Feed.js
       })
-      .catch(err => console.log('CreateCharacter fetch /api/character: ERROR: ', err));
+      .catch(err => console.log('Create Post fetch /api: ERROR: ', err));
   };
 
   const nameChangeHandler = (e) => {
@@ -59,43 +62,42 @@ const CreatePost = (props) => {
     setComments(e.target.value);
   };
 
-  // const refresh = () => {
-  //   setTimeout(function () {
-  //     window.location.reload(1);
-  //   }, 500);
-  // };
+  const refresh = () => {
+    setTimeout(function () {
+      window.location.reload();
+    }, 500);
+  };
 
   return (
     <Modal onHideCart={props.onHideCart}>
       <section>
-        <article className="card createChar">
-          <h3>Enter your Recipe details</h3>
-          <div className="createCharFields">
-            <label htmlFor="name">Name: </label>
+        <article className={classes.post}>
+          <h3 className={classes.title}>Enter your Recipe details</h3>
+          <div className={classes.heading}>
             <input name="name" placeholder="Name Of Recipe" value={name} onChange={nameChangeHandler} />
           </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Rating: </label>
-            <input name="rating" placeholder="Rating!" value={rating} onChange={rateChangeHandler} />
+
+          <div className={classes.body}>
+            <div className={classes.photo}>
+              <input className= {classes.imgInput} name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
+            </div>
+            <div className={classes.info}>
+              <div className="createCharFields">
+                <input name="rating" placeholder="Rating!" value={rating} onChange={rateChangeHandler} />
+              </div>
+              <div className="createCharFields">
+                <input name="thumb" placeholder="Thumb!" value={thumb} onChange={thumbChangeHandler} />
+              </div>
+              <div className="createCharFields">
+                <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
+              </div>
+            </div>
           </div>
           <div className="createCharFields">
-            <label htmlFor="name">Thumb: </label>
-            <input name="thumb" placeholder="Thumb!" value={thumb} onChange={thumbChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Image Url: </label>
-            <input name="imageUrl" placeholder="Image Url!" value={imageUrl} onChange={urlPChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Recipe Url: </label>
-            <input name="recipeUrl" placeholder="Recipe Url!" value={recipeUrl} onChange={urlRChangeHandler} />
-          </div>
-          <div className="createCharFields">
-            <label htmlFor="name">Comments: </label>
-            <input name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
+            <input className={classes.comment} name="comments" placeholder="Add Comments!!" value={comments} onChange={commentChangeHandler} />
           </div>
         </article>
-        <button type="button" className="btnMain" onClick={() => {submitHandler(); props.onHideCart(); }}>Save</button>
+        <button type="button" className="btnMain" onClick={() => {submitHandler(); props.onHideCart(); refresh();}}>Save</button>
       </section>
     </Modal>
   );

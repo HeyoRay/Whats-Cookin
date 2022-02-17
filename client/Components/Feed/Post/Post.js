@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import { BsTrash } from 'react-icons/bs';
+import { AiOutlineEdit } from 'react-icons/ai';
 import Card from '../../UI/Card/Card';
 import StarRating from './Rating';
 import Recommend from './Recommend';
 import classes from './Post.module.css';
 
-const Post = ({ id, name, imageUrl, rating, recipeUrl, thumb, comments, trash }) => {
+const Post = ({ id, name, imageUrl, rating, recipeUrl, thumb, comments, trash, edit }) => {
   return (
     <Card className={classes.post}>
       <h2 className={classes.heading}>{name}
-        <FaTrashAlt
+        <BsTrash
           className={classes.trash}
           onClick={() => trash(id)}
           size={25}
@@ -30,6 +31,12 @@ const Post = ({ id, name, imageUrl, rating, recipeUrl, thumb, comments, trash })
       </div>
       <h3>Notes</h3>
       <a>{comments}</a>
+      <AiOutlineEdit
+        className={classes.editBtn}
+        size={25}
+        color='#0000FF'
+        onClick={() => edit(id)}
+      />
     </Card>
   );
 };

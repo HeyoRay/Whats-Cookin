@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Post from './Post/Post';
 import CreatePost from '../CreatePost/CreatePost';
-
+import EditPost from './EditPost/EditPost';
 
 const Feed = () => {
 
   const [gotPosts, setGotPosts] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
   const [cartShown, setCartShown] = useState(false);
+  const [editShown, setEditShown] = useState(false);
+  const [editObj, setEditObj] = useState({});
 
   const showCartHandler = () => {
     setCartShown(true);
@@ -25,6 +27,7 @@ const Feed = () => {
     fetch('/api')
       .then((res) => res.json())
       .then((post) => {
+        postCache = post;
         post.forEach((el, i) => {
           posts.push(<Post
             key={i}
@@ -36,13 +39,14 @@ const Feed = () => {
             recipeUrl={el.linkurl}
             comments={el.notes}
             trash={deletingPost}
+            edit={editPost}
           />);
         });
         setAllPosts(posts);
         setGotPosts(true);
       })
       .catch(err => console.log('Feed useEffect: get post: ERROR: ', err));
-  }, [cartShown]);
+  }, []);
 
 
   const deletingPost = (id) => {
@@ -51,18 +55,42 @@ const Feed = () => {
       headers: {
         'Content-Type': 'Application/JSON'
       },
-      body: JSON.stringify({id: id})
+      body: JSON.stringify({ id: id })
     })
-      .then(window.location.reload(1))
+      .then(window.location.reload())
       .catch(err => console.log('Delete fetch /api/: ERROR: ', err));
   };
 
+  let postCache;
+  let postEdit;
 
+  const editPost = (id) => {
+    const obj = postCache.find((el) => el._id === id);
+    setEditObj(obj);
+    console.log(postEdit);
+    setEditShown(true);
+  };
+
+  const hideEditHandler = () => {
+    for (const key in postEdit) delete postEdit[key];
+    setEditShown(false);
+  };
 
   return (
     <div>
       <button onClick={showCartHandler}>CREATE HERE!</button>
       {cartShown && <CreatePost onHideCart={hideCartHandler} />}
+      {editShown && <EditPost
+        onHideEdit={hideEditHandler}
+        obj={editObj}
+        id={editObj._id}
+        name={editObj.name}
+        imageUrl={editObj.imageurl}
+        rating={editObj.rating}
+        thumb={editObj.thumb}
+        recipeUrl={editObj.linkurl}
+        comments={editObj.notes}
+      />}
       {gotPosts ? allPosts : <h1>Loading data, please wait...</h1>}
     </div>
   );
