@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classes from './Recommend.module.css';
+import classes from '../../../App.module.scss';
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 const Recommend = ({ clickThumb, reccThumb }) => {

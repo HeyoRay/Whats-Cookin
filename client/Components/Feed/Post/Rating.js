@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classes from './Rating.module.css';
+import classes from '../../../App.module.scss';
 import { FaStar } from 'react-icons/fa';
 
 const StarRating = ({ clickRate, numRating }) => {

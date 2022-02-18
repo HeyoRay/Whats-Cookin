@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../UI/Modal.js/Modal';
-import classes from './CreatePost.module.css';
+import classes from '../../App.module.scss';
 import StarRating from '../Feed/Post/Rating';
 import Recommend from '../Feed/Post/Recommend';
 

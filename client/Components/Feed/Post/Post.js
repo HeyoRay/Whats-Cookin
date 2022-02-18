@@ -4,7 +4,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import Card from '../../UI/Card/Card';
 import StarRating from './Rating';
 import Recommend from './Recommend';
-import classes from './Post.module.css';
+import classes from '../../../App.module.scss';
 
 const Post = ({ id, name, imageUrl, rating, recipeUrl, thumb, comments, trash, edit }) => {
   return (

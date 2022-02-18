@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Post from './Post/Post';
 import CreatePost from '../CreatePost/CreatePost';
 import EditPost from './EditPost/EditPost';
+import Header from './Header';
+import classes from '../../App.module.scss';
 
 const Feed = () => {
 
@@ -78,20 +80,24 @@ const Feed = () => {
 
   return (
     <div>
-      <button onClick={showCartHandler}>CREATE HERE!</button>
-      {cartShown && <CreatePost onHideCart={hideCartHandler} />}
-      {editShown && <EditPost
-        onHideEdit={hideEditHandler}
-        obj={editObj}
-        id={editObj._id}
-        name={editObj.name}
-        imageUrl={editObj.imageurl}
-        rating={editObj.rating}
-        thumb={editObj.thumb}
-        recipeUrl={editObj.linkurl}
-        comments={editObj.notes}
-      />}
-      {gotPosts ? allPosts : <h1>Loading data, please wait...</h1>}
+      <Header onShow={showCartHandler}/>
+      <div className={classes.mainBody}>
+        {/* <button onClick={showCartHandler}>CREATE HERE!</button> */}
+        {cartShown && <CreatePost onHideCart={hideCartHandler} />}
+        {editShown && <EditPost
+          onHideEdit={hideEditHandler}
+          obj={editObj}
+          id={editObj._id}
+          name={editObj.name}
+          imageUrl={editObj.imageurl}
+          rating={editObj.rating}
+          thumb={editObj.thumb}
+          recipeUrl={editObj.linkurl}
+          comments={editObj.notes}
+        />}
+        {gotPosts ? allPosts : <h1>Loading data, please wait...</h1>}
+      </div>
+
     </div>
   );
 };

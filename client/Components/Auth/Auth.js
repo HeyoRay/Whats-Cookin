@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
-import classes from './Auth.module.css';
+import classes from '../../App.module.scss';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/whatscooking.png';
 
@@ -13,10 +13,8 @@ const Auth = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log('EFFECT RUNNING');
 
     return () => {
-      console.log('EFFECT CLEANUP');
     };
   }, []);
 
@@ -29,7 +27,6 @@ const Auth = () => {
     }, 500);
 
     return () => {
-      console.log('CLEANUP');
       clearTimeout(identifier);
     };
   }, [enteredEmail, enteredPassword]);
@@ -89,10 +86,16 @@ const Auth = () => {
                 onBlur={validatePasswordHandler}
               />
             </div>
-            <Link to={'/feed'}>
-              <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-                Login</Button>
-            </Link>
+            <div className={classes.doubleBtn}>
+              <Link to={'/feed'}>
+                <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+                  Login</Button>
+              </Link>
+              <Link to={'/signup'} >
+                <Button type="submit" className={classes.btn}>
+                  Sign Up</Button>
+              </Link>
+            </div>
           </form>
         </section>
       </main>
